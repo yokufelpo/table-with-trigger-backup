@@ -1,4 +1,3 @@
-# table-with-trigger-backup
 
 <H1> Table in SQL made with a backup trigger in case the user is deleted </h1>
 
