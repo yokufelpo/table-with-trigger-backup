@@ -1,0 +1,31 @@
+-- SQLBook: Code
+create database bkp_test;
+use bkp_test
+
+create table usuario(
+ id_usuario int primary key auto_increment,
+ nome varchar(30),
+ login varchar(30),
+ senha varchar(100)
+ );
+create table bkp_usuario(
+ id_backup int primary key auto_increment,
+ id_usuario int,
+ nome varchar(30),
+ login varchar(30),
+ senha varchar(30)
+ );
+
+delimiter $
+create trigger backup_user
+before delete on usuario
+for each row
+begin
+ insert into bkp_usuario values
+ (null, old.id_usuario, old.nome, old.login, old.senha);
+ end
+ $
+
+INSERT INTO USUARIO VALUES(NULL,'Felipe', 'FLPIMEPAC', 'Felipe123');
+Delete FROM usuario where id_usuario = 1 ;
+SELECT * from bkp_usuario;
